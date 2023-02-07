@@ -1,0 +1,48 @@
+<form class="text-center" [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+        <label for="taskName">Name:</label>
+        <input type="text" formControlName="taskName" id="taskName" class="form-control"
+            placeholder="Name">
+        <div *ngIf="checkInput(f.taskName)">
+            <small class="text-danger" *ngIf="f.taskName.errors.required">Name is mandatory</small>
+        </div>
+
+    </div>
+    <div class="form-group">
+        <label for="taskCode">Description:</label>
+        <input type="text" formControlName="description" id="description" class="form-control"
+            placeholder="description">
+        <div *ngIf="checkInput(f.description)">
+            <small class="text-danger" *ngIf="f.taskCode.errors.required">Description is mandatory</small>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="sprintSelect">Sprint:</label>
+        <select class="form-control"  formControlName="sprintSelect" id="sprintSelect" (change)="sprintChanged($event.target.value)">
+            <option selected disabled>Choose a sprint</option>
+            <option *ngFor="let p of sprintsList" value="{{p.id}}">{{p.name}}</option>
+        </select>
+        <div *ngIf="f.sprintSelect.dirty || f.sprintSelect.touched">
+            <small class="text-danger" *ngIf="selectedSprint == '-1'">Sprint is mandatory</small>
+        </div>
+    </div>
+
+    
+    <div class="form-group">
+        <label for="userSelect">User:</label>
+        <select class="form-control"  formControlName="userSelect" id="userSelect" (change)="userChanged($event.target.value)">
+            <option selected disabled>Choose a user</option>
+            <option *ngFor="let p of usersList" value="{{p.id}}">{{p.username}}</option>
+        </select>
+        <div *ngIf="f.userSelect.dirty || f.userSelect.touched">
+            <small class="text-danger" *ngIf="selectedUser == '-1'">User is mandatory</small>
+        </div>
+    </div>
+
+    <button mdbBtn color="secondary" block="true" class="my-4" type="submit" *ngIf="taskService.selectedTask != null">Update</button>
+    <button mdbBtn color="secondary" block="true" class="my-4" type="submit" *ngIf="taskService.selectedTask == null">Create</button>
+    <button mdbBtn color="warning" block="true" class="my-4" type="button" (click)="reinitForms(true)">Delete</button>
+
+</form>

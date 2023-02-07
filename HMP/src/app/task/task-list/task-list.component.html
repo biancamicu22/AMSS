@@ -1,0 +1,54 @@
+<div *ngIf="taskService.taskList && taskService.taskList.length > 0">
+    <div class="row">
+      <div class="col-md-11">
+        <input type="text" id="filterByTaskName" #taskNameFilter class="form-control"
+            placeholder="Filter by Task Name" (input)="detectChange()">
+      </div>
+      <div class="col-md-1">
+        <button mdbBtn color="info" block="true" size="sm" type="button" (click)="taskNameFilter.value = null;">
+          <mdb-icon fas icon="eraser"></mdb-icon></button>
+      </div>
+    </div>
+    <div class="row" style="max-height: 800px; overflow-y: scroll;">
+    <table mdbTable striped="true">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Status</th>
+          <th>Responsible</th>
+          <th>See Task</th>
+          <th>Change</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr mdbTableCol *ngFor="let task of taskService.taskList; let i = index">
+          <ng-container *ngIf="taskNameFilter.value == null || task.name.toLowerCase().includes(taskNameFilter.value.toLowerCase())">
+            <th scope="row">{{(i+1)}}</th>
+            <td>{{task.name}}</td>
+            <td>{{task.description}}</td>
+            <td>
+              <select class="form-control" id="statusSelect" (change)="statusChanged(task, $event.target.value)">
+                <option value="ToDo" [selected]="task.status == 'ToDo'">To Do</option>
+                <option value="InProgress" [selected]="task.status == 'InProgress'">In Progress</option>
+                <option value="Done" [selected]="task.status == 'Done'">Done</option>
+            </select>
+            </td>
+            <td>{{task.username}}</td>
+            <td>
+              <button mdbBtn color="secondary" block="true" size="sm" type="button" (click)="seeTasks(task)"><mdb-icon fas icon="eye"></mdb-icon></button>
+            </td>
+            <td>
+              <button mdbBtn color="secondary" block="true" size="sm" type="button" (click)="setSelectedTask(task)"><mdb-icon fas icon="edit"></mdb-icon></button>
+            </td>
+            <td>
+              <button mdbBtn color="danger" block="true" size="sm" type="button" (click)="deleteTask(task)"><mdb-icon fas icon="trash-alt"></mdb-icon></button>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>

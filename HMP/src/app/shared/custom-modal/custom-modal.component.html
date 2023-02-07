@@ -1,0 +1,21 @@
+<div mdbModal #customModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="customModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="customModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100 text-warning" id="customModalLabel">{{Title}}</h4>
+      </div>
+      <div class="modal-body">
+        {{Body}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close"
+          (click)="customModal.hide()" mdbWavesEffect>Close</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect
+          (click)="triggerCallback()">{{ActionButtonText}}</button>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,31 @@
+<!-- Default form login -->
+<form class="center text-center border border-light p-5 centeredContent400" [formGroup]="loginForm"
+  (ngSubmit)="onSubmit()">
+
+  <p class="h4 mb-4">Login</p>
+
+  <!-- Email -->
+  <div class="form-group">
+    <input mdbInput mdbValidate formControlName="username" id="username" type="text" id="defaultLoginFormEmail"
+      class="form-control mb-4" placeholder="Username" />
+    <div *ngIf="checkInput(f.username)">
+      <small class="text-danger" *ngIf="f.username.errors.required">Username is mandatory</small>
+    </div>
+  </div>
+
+  <!-- Password -->
+  <div class="form-group">
+    <input type="password" mdbInput mdbValidate formControlName="userPassword" id="userPassword" id="userPassword"
+      class="form-control mb-4" placeholder="Password" />
+    <div *ngIf="checkInput(f.userPassword)">
+      <small class="text-danger" *ngIf="f.userPassword.errors.required">Password is mandatory</small>
+    </div>
+  </div>
+
+  
+  <div [innerHTML]="otherErrorsDiv">
+  </div>
+  
+
+  <!-- Sign in button -->
+  <button mdbBtn color="warning" block="true" class="btn button my-4" type="submit">Login</button>

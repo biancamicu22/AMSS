@@ -1,0 +1,13 @@
+<app-infobar  [ShowNewTask]="true" [Route]="'Tasks from sprint ' + sprintName" [BackButtonValue]="'/sprints'"></app-infobar>
+
+<div class="row justify-content-md-center" *ngIf="createMode">
+    <div class="col-md-8">
+        <app-task-create></app-task-create>
+    </div>
+</div>
+
+<div class="row justify-content-md-center" *ngIf="createMode == false">
+    <div class="col-md-11">
+        <app-task-list></app-task-list>
+    </div>
+</div>

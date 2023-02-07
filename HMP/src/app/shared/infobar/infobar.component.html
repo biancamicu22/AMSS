@@ -1,0 +1,30 @@
+<mdb-card class="mb-4 wow fadeIn bg-warning">
+
+    <!--Card content-->
+    <mdb-card-body class="d-sm-flex justify-content-between">
+
+        <h4 class="mb-sm-0 pt-1 center">
+            <span>{{Route}}</span>
+        </h4>
+        <div class="d-flex md-form justify-content-center my-0" *ngIf="ShowNewSprint">
+            <!-- Default input -->
+            <button mdbBtn color="secondary" size="sm" class="my-0 p" (click)="showNewSprint()">
+                {{sprintText}}
+            </button>
+        </div>
+        <div class="d-flex md-form justify-content-center my-0" *ngIf="ShowNewTask">
+            <!-- Default input -->
+            <button mdbBtn color="secondary" size="sm" class="my-0 p" (click)="showNewTask()">
+                {{taskText}}
+            </button>
+        </div>
+        <div class="d-flex md-form justify-content-center my-0" *ngIf="BackButtonValue">
+            <!-- BackButton -->
+            <button [routerLink]="[BackButtonValue]" mdbBtn color="secondary" size="sm" class="my-0 p">
+                Back
+            </button>
+
+        </div>
+    </mdb-card-body>
+
+</mdb-card>

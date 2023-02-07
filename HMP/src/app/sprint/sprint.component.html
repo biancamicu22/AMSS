@@ -1,0 +1,13 @@
+<app-infobar  [ShowNewSprint]="true" [Route]="'Sprints'"></app-infobar>
+
+<div class="row justify-content-md-center" *ngIf="createMode">
+    <div class="col-md-8">
+        <app-sprint-create></app-sprint-create>
+    </div>
+</div>
+
+<div class="row justify-content-md-center" *ngIf="createMode == false">
+    <div class="col-md-11">
+        <app-sprint-list></app-sprint-list>
+    </div>
+</div>

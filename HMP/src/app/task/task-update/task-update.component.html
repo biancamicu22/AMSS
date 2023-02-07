@@ -1,0 +1,77 @@
+<app-infobar [Route]="'Task'" [BackButtonValue]="'/tasks'"></app-infobar>
+
+<div class="container" style="align-items: center;margin: 0 auto;" *ngIf="task != undefined">
+  <form>
+    <div class="form-group">
+      <h3>{{task.name}}</h3>
+    </div>
+    <div class="form-group">
+      <p>{{task.description}}</p>
+    </div>
+    <div class="form-group">
+      <h5>Status</h5>
+      <select class="form-control" id="statusSelect" (change)="statusChanged($event.target.value)">
+        <option value="ToDo" [selected]="task.status == 'ToDo'">To Do</option>
+        <option value="InProgress" [selected]="task.status == 'InProgress'">In Progress</option>
+        <option value="Done" [selected]="task.status == 'Done'">Done</option>
+      </select>
+    </div>
+  </form>
+
+  <br><br><br><br><br>
+  <div class="row d-flex justify-content-center" style="margin-top: 0.5rem;">
+    <div class="col-10 d-flex justify-content-center">
+    <form [formGroup]="this.form" >
+        <div class="text-dark">
+            <div class="row d-flex">
+              <div class="col-lg-7" style="float: left; height: 275px; width: 725px;">
+                <div class="card">
+                  <div class="card-body p-4" style="padding-bottom: 0.5rem !important; padding-top: 1rem !important;">
+                    <div class="d-flex flex-start w-100">
+                      <img class="rounded-circle shadow-1-strong me-3" style="padding-right: 0.5rem !important;"
+                        src="../../assets/userAdmin.png" alt="avatar" width="65"
+                        height="65" />
+                      <div class="w-100" style="margin-left: 0.5rem;">
+                        <h5 style="margin: 0 !important; padding-bottom: 0.3rem !important; ">Add a comment</h5>
+                        <div class="form-outline">
+                          <textarea class="form-control" formControlName="comment" id="textAreaExample" rows="3" placeholder="Type a comment..."></textarea>
+                          <small class="text-danger" *ngIf="displayErrorMessage == true">There was an error. Please try again!</small>
+                        </div>
+                        <div class="d-flex mt-3" style="float: right;">
+                          <button type="button" class="btn btn-danger btn-md" (click)="addComment()">
+                            Send <i class="fas fa-long-arrow-alt-right ms-1"></i>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+    </form>
+    <div class="col-md-8 col-lg-5 justify-content-center" style="padding-left: 0rem !important; margin-bottom: 1rem; ">
+        <div class="card shadow-0 border">
+        <div class="card-body p-4">
+          <div *ngIf="task.comments.length > 0">
+            <div *ngFor="let com of task.comments; let last = last" class="card mb-4">
+              <div class="card-body">
+                <p>{{com.description}}</p>
+    
+                <div class="d-flex justify-content-between">
+                  <div class="d-flex flex-row align-items-center">
+                    <img src="../../assets/comment-user.png" alt="avatar" width="25"
+                    height="25" />
+                    <p class="small mb-0 ms-2" style="padding-left: 0.3rem;">{{com.username}}</p>
+                  </div>
+                </div>
+                <div class="col-md-5" style="margin-left: 150px;" *ngIf="username == com.username">
+                  <button type="submit" class="btn btn-danger btn-md" (click)="deleteComment(com.id)">Delete</button>
+                </div>
+              </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>

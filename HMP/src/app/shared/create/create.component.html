@@ -1,0 +1,72 @@
+<!-- Default form register -->
+<form *ngIf="activateResponse == null" class="text-center border border-light p-5 centeredContent400" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+  <p class="h4 mb-4">Sign up</p>
+
+  <div class="form-row mb-4">
+    <div class="col">
+      <!-- First name -->
+      <div class="form-group">
+        <input type="text" formControlName="userFirstName" id="userFirstName" class="form-control" placeholder="First name">
+        <div *ngIf="checkInput(f.userFirstName)">
+          <small class="text-danger" *ngIf="f.userFirstName.errors.required">First name is required</small>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <!-- Last name -->
+      <div class="form-group">
+        <input type="text" formControlName="userLastName" id="userLastName" class="form-control" placeholder="Last name">
+        <div *ngIf="checkInput(f.userLastName)">
+          <small class="text-danger" *ngIf="f.userLastName.errors.required">Last name is required</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <input type="text" formControlName="username" class="form-control mb-4" placeholder="UserName">
+    <div *ngIf="checkInput(f.username)">
+      <small class="text-danger" *ngIf="f.username.errors.required">UserName is required</small>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <input type="date" formControlName="userBirthDate" id="userBirthDate" class="form-control mb-4" placeholder="1997-12-19">
+    <div *ngIf="checkInput(f.userBirthDate)">
+      <small class="text-danger" *ngIf="f.userBirthDate.errors.required">Birthdate is required</small>
+    </div>
+  </div>
+
+  <!-- E-mail -->
+  <div class="form-group">
+    <input type="email" formControlName="userEmail" id="userEmail" class="form-control mb-4" placeholder="E-mail">
+    <div *ngIf="checkInput(f.userEmail)">
+      <small class="text-danger" *ngIf="f.userEmail.errors.required">Email is required</small>
+      <small class="text-danger" *ngIf="f.userEmail.errors.email">Email must be a valid email address</small>
+    </div>
+  </div>
+  
+  <!-- Password -->
+  <div class="form-group">
+    <input type="password" formControlName="userPassword" id="userPassword" class="form-control" placeholder="Password"
+      aria-describedby="userPasswordHelpBlock">
+      <div *ngIf="checkInput(f.userPassword)">
+        <small class="text-danger" *ngIf="f.userPassword.errors.required">Password is required</small>
+      </div>
+  </div>
+
+  <div [innerHTML]="otherErrorsDiv">
+  </div>
+  
+  <!-- Sign up button -->
+  <button mdbBtn color="warning" block="true" class="my-4" type="submit">Register</button>
+
+  <hr>
+
+  <!-- Terms of service -->
+  <p>By clicking
+    <em>Register</em> you agree with<br>
+    <a href="https://www.termsandconditionsgenerator.com/live.php?token=XCYE2EokLbCvKawDqTkatiIez5hTP98Y" target="_blank"> terms and conditions</a></p>
+
+</form>

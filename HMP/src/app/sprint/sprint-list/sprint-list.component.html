@@ -1,0 +1,48 @@
+<div *ngIf="sprintService.sprintList && sprintService.sprintList.length > 0">
+    <div class="row">
+      <div class="col-md-11">
+        <input type="text" id="filterBySprintName" #sprintNameFilter class="form-control"
+            placeholder="Filter by Sprint Name" (input)="detectChange()">
+      </div>
+      <div class="col-md-1">
+        <button mdbBtn color="info" block="true" size="sm" type="button" (click)="sprintNameFilter.value = null;">
+          <mdb-icon fas icon="eraser"></mdb-icon></button>
+      </div>
+    </div>
+    <div class="row" style="max-height: 800px; overflow-y: scroll;">
+    <table mdbTable striped="true">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Scope</th>
+          <th>Start date</th>
+          <th>End date</th>
+          <th>See tasks</th>
+          <th>Change</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr mdbTableCol *ngFor="let sprint of sprintService.sprintList; let i = index">
+          <ng-container *ngIf="sprintNameFilter.value == null || sprint.name.toLowerCase().includes(sprintNameFilter.value.toLowerCase())">
+            <th scope="row">{{(i+1)}}</th>
+            <td>{{sprint.name}}</td>
+            <td>{{sprint.goal}}</td>
+            <td>{{sprint.start_Date | date: 'mediumDate'}}</td>
+            <td>{{sprint.end_Date | date: 'mediumDate'}}</td>
+            <td>
+              <button mdbBtn color="secondary" block="true" size="sm" type="button" (click)="seeTasks(sprint)"><mdb-icon fas icon="eye"></mdb-icon></button>
+            </td>
+            <td>
+              <button mdbBtn color="secondary" block="true" size="sm" type="button" (click)="setSelectedSprint(sprint)"><mdb-icon fas icon="edit"></mdb-icon></button>
+            </td>
+            <td>
+              <button mdbBtn color="danger" block="true" size="sm" type="button" (click)="deleteSprint(sprint)"><mdb-icon fas icon="trash-alt"></mdb-icon></button>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>

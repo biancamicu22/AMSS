@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+.centeredContent400{
+  width: 400px;
+  margin: 0 auto;
+}
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+body {
+  background-color: white;
+  padding-top: 55px;
+}
+
+.card.card-cascade .view.gradient-card-header {
+  padding: 1rem 1rem;
+  text-align: center;
+}
+
+.card.card-cascade h3,
+.card.card-cascade h4
+{
+  margin-bottom: 0px;
+}
+
+.blue-gradient {
+  background: -webkit-linear-gradient(50deg, #778899, #696969);
+  background: linear-gradient(40deg, #778899, #A9A9A9);
+}
+
+
+@import '~open-iconic/font/css/open-iconic-bootstrap.css';
+@import '../node_modules/ngx-toastr/toastr.css';
+
+
+.my-custom-scrollbar {
+position: relative;
+height: 400px;
+overflow: auto;
+}
+.table-wrapper-scroll-y {
+display: block;
+}
+
+.carousel-box{
+  height: 100vh
+}

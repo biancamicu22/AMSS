@@ -1,0 +1,13 @@
+<div class="centeredContent400" style="margin-top: 8rem;">
+    <section class="content">
+        <ul class="tabs">
+            <li class="tab-link" [class.active]="!hideLogin && hideCreate" data-tab="tab-2" (click)="activateLogin($event)">Login</li>
+            <li class="tab-link active" [class.active]="!hideCreate && hideLogin" data-tab="tab-1" (click)="activateCreate($event)">Create account</li>
+        </ul>
+    </section>
+    
+    <section class="content">
+        <app-login [hidden]="hideLogin"></app-login>
+        <app-create [hidden]="hideCreate"></app-create>
+    </section>
+</div>
